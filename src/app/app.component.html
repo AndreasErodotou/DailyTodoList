@@ -1,4 +1,89 @@
+<div class="container">
+  <div class="d-flex">
+    <h1 class="mt-4">Pending Tasks</h1>
 
-<div class="card flex justify-content-center">
-  <p-button label="Check" icon="pi pi-check"></p-button>
+    <p-button
+      class="mt-4 mx-3"
+      styleClass="p-button-rounded"
+      icon="pi pi-plus"
+    ></p-button>
+  </div>
+  <div class="row">
+    <p-card
+      *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]"
+      header="Card Title"
+      subheader="Expire in 10h"
+      class="col-4 my-4"
+    >
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
+        consequuntur error repudiandae numquam deserunt quisquam repellat libero
+        asperiores earum nam nobis, culpa ratione quam perferendis esse,
+        cupiditate neque quas!
+      </p>
+      <ng-template pTemplate="footer">
+        <div class="d-flex justify-content-around">
+          <p-button
+            label="Done"
+            styleClass="p-button-rounded p-button-success"
+            icon="pi pi-check"
+          ></p-button>
+          <p-button
+            label="Delete"
+            icon="pi pi-times"
+            styleClass="p-button-rounded p-button-danger"
+            [style]="{ 'margin-left': '.5em' }"
+          ></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <h1 class="mt-4">Done Tasks</h1>
+  <div class="row">
+    <p-card
+      *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]"
+      header="Card Title"
+      subheader="Expire in 10h"
+      class="col-4 my-4"
+    >
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
+        consequuntur error repudiandae numquam deserunt quisquam repellat libero
+        asperiores earum nam nobis, culpa ratione quam perferendis esse,
+        cupiditate neque quas!
+      </p>
+      <ng-template pTemplate="footer">
+        <p-button
+          label="Clone"
+          styleClass="p-button-rounded"
+          icon="pi pi-clone"
+        ></p-button>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <h1 class="mt-4">Expired Tasks</h1>
+  <div class="row">
+    <p-card
+      *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]"
+      header="Card Title"
+      subheader="Expire in 10h"
+      class="col-4 my-4"
+    >
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
+        consequuntur error repudiandae numquam deserunt quisquam repellat libero
+        asperiores earum nam nobis, culpa ratione quam perferendis esse,
+        cupiditate neque quas!
+      </p>
+      <ng-template pTemplate="footer">
+        <p-button
+          label="Restore"
+          styleClass="p-button-rounded"
+          icon="pi pi-refresh"
+        ></p-button>
+      </ng-template>
+    </p-card>
+  </div>
 </div>
