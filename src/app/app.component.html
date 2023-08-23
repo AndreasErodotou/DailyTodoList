@@ -10,19 +10,21 @@
   </div>
   <div class="row">
     <p-card
-      *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]"
-      header="Card Title"
+      *ngFor="let pendingTask of pendingTasks"
+      header={{pendingTask.title}}
       subheader="Expire in 10h"
       class="col-4 my-4"
     >
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
-        consequuntur error repudiandae numquam deserunt quisquam repellat libero
-        asperiores earum nam nobis, culpa ratione quam perferendis esse,
-        cupiditate neque quas!
+        {{ pendingTask.description }}
       </p>
       <ng-template pTemplate="footer">
         <div class="d-flex justify-content-around">
+          <p-button
+            label="Edit"
+            icon="pi pi-pencil"
+            styleClass="p-button-rounded"
+          ></p-button>
           <p-button
             label="Done"
             styleClass="p-button-rounded p-button-success"
@@ -32,26 +34,22 @@
             label="Delete"
             icon="pi pi-times"
             styleClass="p-button-rounded p-button-danger"
-            [style]="{ 'margin-left': '.5em' }"
           ></p-button>
         </div>
       </ng-template>
     </p-card>
   </div>
 
-  <h1 class="mt-4">Done Tasks</h1>
+  <h1 class="mt-4">Finished Tasks</h1>
   <div class="row">
     <p-card
-      *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]"
-      header="Card Title"
+      *ngFor="let finishedTask of finishedTasks"
+      header={{finishedTask.title}}
       subheader="Expire in 10h"
       class="col-4 my-4"
     >
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
-        consequuntur error repudiandae numquam deserunt quisquam repellat libero
-        asperiores earum nam nobis, culpa ratione quam perferendis esse,
-        cupiditate neque quas!
+        {{finishedTask.description}}
       </p>
       <ng-template pTemplate="footer">
         <p-button
@@ -66,16 +64,13 @@
   <h1 class="mt-4">Expired Tasks</h1>
   <div class="row">
     <p-card
-      *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]"
-      header="Card Title"
+      *ngFor="let expiredTask of expiredTasks"
+      header={{expiredTask.title}}
       subheader="Expire in 10h"
       class="col-4 my-4"
     >
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
-        consequuntur error repudiandae numquam deserunt quisquam repellat libero
-        asperiores earum nam nobis, culpa ratione quam perferendis esse,
-        cupiditate neque quas!
+        {{expiredTask.description}}
       </p>
       <ng-template pTemplate="footer">
         <p-button
