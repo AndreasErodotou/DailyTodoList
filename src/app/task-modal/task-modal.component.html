@@ -30,8 +30,8 @@
 
 <div class="p-dialog-footer d-flex justify-content-around">
   <p-button
-    label="submit"
+    label= "{{task?'Update':'Create'}}"
     styleClass="p-button-rounded p-button-success"
   ></p-button>
-  <p-button label="Cancel" styleClass="p-button-rounded"></p-button>
+  <p-button label="Cancel" styleClass="p-button-rounded" (click) = "close()"></p-button>
 </div>

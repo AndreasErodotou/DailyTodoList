@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TaskModalComponent } from './task-modal/task-modal.component';
+import { Task } from './core/models/task';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent {
   ref: DynamicDialogRef | undefined;
 
   constructor(public dialogService: DialogService) {}
-  pendingTasks = [
+  pendingTasks: Task[] = [
     {
       id: 1,
       title: 'Finish Project Proposal',
@@ -49,7 +50,7 @@ export class AppComponent {
       priority: true,
     },
   ];
-  finishedTasks = [
+  finishedTasks: Task[] = [
     {
       id: 6,
       title: 'Client Feedback Analysis',
@@ -86,7 +87,7 @@ export class AppComponent {
       priority: true,
     },
   ];
-  expiredTasks = [
+  expiredTasks: Task[] = [
     {
       id: 11,
       title: 'Documentation Update',
@@ -124,13 +125,13 @@ export class AppComponent {
     },
   ];
 
-  showTaskModal(task: any) {
+  showTaskModal(task: Task | null) {
     this.ref = this.dialogService.open(TaskModalComponent, {
       header: task? 'Edit Task': 'Create Task',
       data: task,
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
-      maximizable: true,
+      maximizable: false,
     });
 
     this.ref.onClose.subscribe(() => {

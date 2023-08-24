@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { Task } from '../core/models/task';
 
 @Component({
   selector: 'app-task-modal',
@@ -8,9 +9,7 @@ import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dy
   styleUrls: ['./task-modal.component.css']
 })
 export class TaskModalComponent {
-
-  task: any;
-
+  task: Task;
   taskForm: FormGroup; 
 
   constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig ) {
@@ -21,6 +20,10 @@ export class TaskModalComponent {
       description: new FormControl(this.task?.description, Validators.required),
       priority: new FormControl(this.task? this.task.priority : false)
     });
+  }
+
+  close() {
+    this.ref.close();
   }
 
 }
