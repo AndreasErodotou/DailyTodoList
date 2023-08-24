@@ -124,10 +124,10 @@ export class AppComponent {
     },
   ];
 
-  showTaskModal() {
+  showTaskModal(task: any) {
     this.ref = this.dialogService.open(TaskModalComponent, {
-      header: 'Task',
-      // width: '70%',
+      header: task? 'Edit Task': 'Create Task',
+      data: task,
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
