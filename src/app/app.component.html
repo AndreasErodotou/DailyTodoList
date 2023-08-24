@@ -13,7 +13,7 @@
     <p-card
       *ngFor="let pendingTask of pendingTasks"
       header="{{ pendingTask.title }}"
-      class="col-4 my-4"
+      class="col-xl-4 col-lg-6 col-md-6 my-4"
       styleClass="{{ pendingTask.hasPriority ? '' : 'bg-light' }}"
     >
       <ng-template pTemplate="subtitle">
@@ -56,7 +56,7 @@
     <p-card
       *ngFor="let finishedTask of finishedTasks"
       header="{{ finishedTask.title }}"
-      class="col-4 my-4"
+      class="col-lg-4 col-md-6 my-4"
       styleClass="bg-light"
     >
       <ng-template pTemplate="subtitle">
@@ -86,7 +86,7 @@
     <p-card
       *ngFor="let expiredTask of expiredTasks"
       header="{{ expiredTask.title }}"
-      class="col-4 my-4"
+      class="col-lg-4 col-md-6 my-4"
       styleClass="bg-light"
     >
       <ng-template pTemplate="subtitle">
