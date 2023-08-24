@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Task } from '../core/models/task';
 import { LocalStorageService } from '../core/services/local-storage.service';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-task-modal',
@@ -12,6 +13,14 @@ import { LocalStorageService } from '../core/services/local-storage.service';
 export class TaskModalComponent {
   task: Task;
   taskForm: FormGroup; 
+
+  get title(){
+    return this.taskForm.get('title');
+  }
+
+  get description(){
+    return this.taskForm.get('description');
+  }
 
   constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private localStorageService: LocalStorageService ) {
     this.task = this.config.data;
@@ -28,7 +37,13 @@ export class TaskModalComponent {
   }
 
   saveTask() {
-    const taskFromForm: Task = this.taskForm.getRawValue();
+    const taskFromForm: Task = {
+      id: this.task?.id?? uuid.v4(),
+      title: this.title?.value,
+      description: this.description?.value,
+      priority: this.taskForm.get('priority')?.value,
+      created: this.task?.created ?? new Date()
+    }
     console.log(taskFromForm);
     this.localStorageService.setData(taskFromForm.title?? 'WithoutTitle',taskFromForm);
   }
