@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Task } from '../core/models/task';
+import { LocalStorageService } from '../core/services/local-storage.service';
 
 @Component({
   selector: 'app-task-modal',
@@ -12,7 +13,7 @@ export class TaskModalComponent {
   task: Task;
   taskForm: FormGroup; 
 
-  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig ) {
+  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private localStorageService: LocalStorageService ) {
     this.task = this.config.data;
 
     this.taskForm = new FormGroup({
@@ -24,6 +25,12 @@ export class TaskModalComponent {
 
   close() {
     this.ref.close();
+  }
+
+  saveTask() {
+    const taskFromForm: Task = this.taskForm.getRawValue();
+    console.log(taskFromForm);
+    this.localStorageService.setData(taskFromForm.title?? 'WithoutTitle',taskFromForm);
   }
 
 }

@@ -32,6 +32,7 @@
   <p-button
     label= "{{task?'Update':'Create'}}"
     styleClass="p-button-rounded p-button-success"
+    (click)= "saveTask()"
   ></p-button>
   <p-button label="Cancel" styleClass="p-button-rounded" (click) = "close()"></p-button>
 </div>
