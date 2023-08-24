@@ -31,11 +31,13 @@
             label="Done"
             styleClass="p-button-rounded p-button-success"
             icon="pi pi-check"
+            (click)="onDone(pendingTask)"
           ></p-button>
           <p-button
             label="Delete"
             icon="pi pi-times"
             styleClass="p-button-rounded p-button-danger"
+            (click)="onRemove(pendingTask)"
           ></p-button>
         </div>
       </ng-template>

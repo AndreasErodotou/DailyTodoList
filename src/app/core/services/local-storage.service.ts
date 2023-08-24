@@ -8,33 +8,45 @@ export class LocalStorageService {
 
   constructor() { }
 
-  setData(key: string, data: Task): void {
+  setData(key: string | null, data: Task): void {
+    if(!key){
+      return;
+    }
+
     localStorage.setItem(key, JSON.stringify(data));
   }
 
-  getData(key: string): Task {
+  getData(key: string | null): Task | null {
+    if(!key){
+      return null;
+    }
+
     const data = localStorage.getItem(key);
     return data? JSON.parse(data) : null;
   }
 
-  getAllData(): { [key: string]: any } {
-    const allData: { [key: string]: any } = {};
+  getAllData(): Task[] {
+    const allData: Task[] = [];
 
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      
-      if(!key){
+      const data = this.getData(key);
+
+      if(!data){
         continue;
       }
 
-      const data = this.getData(key);
-      allData[key] = data;
+      allData.push(data);
     }
 
     return allData;
   }
 
-  removeData(key: string): void {
+  removeData(key: string | null): void {
+    if(!key){
+      return;
+    }
+    
     localStorage.removeItem(key);
   }
 }
