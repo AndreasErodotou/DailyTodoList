@@ -1,0 +1,37 @@
+<div class="p-dialog-content">
+  <form [formGroup]="taskForm">
+    <div class="m-3">
+      <label for="priority"><strong>Has Priority?</strong></label><br />
+      <p-inputSwitch formControlName="priority"></p-inputSwitch>
+    </div>
+
+    <div class="m-3">
+      <label for="title"><strong>Title:</strong></label>
+      <input
+        pInputText
+        formControlName="title"
+        id="title"
+        type="text"
+        class="form-control"
+      />
+    </div>
+
+    <div class="m-3">
+      <label for="description"><strong>Description:</strong></label><br />
+      <textarea
+        rows="5"
+        cols="30"
+        pInputTextarea
+        formControlName="description"
+      ></textarea>
+    </div>
+  </form>
+</div>
+
+<div class="p-dialog-footer d-flex justify-content-around">
+  <p-button
+    label="submit"
+    styleClass="p-button-rounded p-button-success"
+  ></p-button>
+  <p-button label="Cancel" styleClass="p-button-rounded"></p-button>
+</div>
