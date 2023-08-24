@@ -27,7 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   reloadData(){
     const tasks = this.localStorageService.getAllData();
-    this.pendingTasks = tasks.filter(t => t.isDone === false);
+    this.pendingTasks = tasks.filter(t => t.isDone === false).sort((t1, t2) => t2.hasPriority >= t1.hasPriority? 1 : -1 );
     this.finishedTasks = tasks.filter(t => t.isDone === true);
   }
 

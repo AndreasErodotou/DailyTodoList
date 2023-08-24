@@ -2,7 +2,7 @@ export class Task {
   public id: string | null = null;
   public title?: string;
   public description?: string;
-  public hasPriority?: boolean;
+  public hasPriority: boolean = false;
   public created?: Date;
   public isDone?: boolean;
 
