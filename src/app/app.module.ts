@@ -12,7 +12,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { LocalStorageService } from './core/services/local-storage.service';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,10 @@ import { MessageService } from 'primeng/api';
     InputSwitchModule,
     InputTextModule,
     InputTextareaModule,
-    ToastModule
+    ToastModule,
+    ConfirmPopupModule
   ],
-  providers: [DialogService, LocalStorageService, MessageService],
+  providers: [DialogService, LocalStorageService, MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
