@@ -13,10 +13,15 @@
     <p-card
       *ngFor="let pendingTask of pendingTasks"
       header={{pendingTask.title}}
-      subheader="Expire in 10h"
       class="col-4 my-4"
+      styleClass = "{{pendingTask.hasPriority? '': 'bg-light'}}" 
     >
-      <p>
+      <ng-template pTemplate="subtitle">
+        <h6 [ngClass]="{'text-danger': pendingTask.hasPriority}">
+          {{pendingTask.hasPriority? 'Priority: Urgent': 'Priority: Normal'}}
+        </h6>
+      </ng-template>
+      <p >
         {{ pendingTask.description }}
       </p>
       <ng-template pTemplate="footer">

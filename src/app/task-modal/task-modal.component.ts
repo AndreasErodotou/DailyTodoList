@@ -28,7 +28,7 @@ export class TaskModalComponent {
     this.taskForm = new FormGroup({
       title: new FormControl(this.task?.title, Validators.required),
       description: new FormControl(this.task?.description, Validators.required),
-      priority: new FormControl(this.task? this.task.priority : false)
+      hasPriority: new FormControl(this.task? this.task.hasPriority : false)
     });
   }
 
@@ -42,7 +42,7 @@ export class TaskModalComponent {
       id: this.task?.id?? uuid.v4(),
       title: this.title?.value,
       description: this.description?.value,
-      priority: this.taskForm.get('priority')?.value,
+      hasPriority: this.taskForm.get('hasPriority')?.value,
       created: this.task?.created ?? new Date(),
       isDone: false
     }
