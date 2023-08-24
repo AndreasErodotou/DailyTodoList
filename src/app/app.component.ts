@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TaskModalComponent } from './task-modal/task-modal.component';
 import { Task } from './core/models/task';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent {
   title = 'daily-todo-list';
   ref: DynamicDialogRef | undefined;
 
-  constructor(public dialogService: DialogService) {}
+  constructor(public dialogService: DialogService, private messageService: MessageService ) {}
   pendingTasks: Task[] = [
     {
       title: 'Finish Project Proposal',
@@ -119,8 +120,19 @@ export class AppComponent {
       maximizable: false,
     });
 
-    this.ref.onClose.subscribe(() => {
-      console.log('modal closed');
+    this.ref.onClose.subscribe((task: Task) => {
+      if(task){
+        console.log(task);
+        let exitingTask = this.pendingTasks.filter(item => item.id === task.id)[0];
+
+        if(!exitingTask){
+          this.pendingTasks = [...this.pendingTasks, task];
+        }else{
+          exitingTask = task;
+        }
+
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Task Saved'});
+      }
     });
   }
 

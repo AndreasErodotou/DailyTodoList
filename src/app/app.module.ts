@@ -11,6 +11,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { LocalStorageService } from './core/services/local-storage.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,10 @@ import { LocalStorageService } from './core/services/local-storage.service';
     ReactiveFormsModule,
     InputSwitchModule,
     InputTextModule,
-    InputTextareaModule
+    InputTextareaModule,
+    ToastModule
   ],
-  providers: [DialogService, LocalStorageService],
+  providers: [DialogService, LocalStorageService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

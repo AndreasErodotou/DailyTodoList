@@ -4,6 +4,7 @@ import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dy
 import { Task } from '../core/models/task';
 import { LocalStorageService } from '../core/services/local-storage.service';
 import * as uuid from 'uuid';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-task-modal',
@@ -22,7 +23,7 @@ export class TaskModalComponent {
     return this.taskForm.get('description');
   }
 
-  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private localStorageService: LocalStorageService ) {
+  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private localStorageService: LocalStorageService) {
     this.task = this.config.data;
 
     this.taskForm = new FormGroup({
@@ -32,8 +33,8 @@ export class TaskModalComponent {
     });
   }
 
-  close() {
-    this.ref.close();
+  close(task?:Task) {
+    this.ref.close(task);
   }
 
   saveTask() {
@@ -44,7 +45,8 @@ export class TaskModalComponent {
       priority: this.taskForm.get('priority')?.value,
       created: this.task?.created ?? new Date()
     }
-    this.localStorageService.setData(taskFromForm.title?? 'WithoutTitle',taskFromForm);
+    this.localStorageService.setData(taskFromForm.id?? 'WithoutId',taskFromForm);
+    this.close(taskFromForm);
   }
 
 }
