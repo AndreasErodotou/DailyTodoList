@@ -44,7 +44,6 @@ export class TaskModalComponent {
       priority: this.taskForm.get('priority')?.value,
       created: this.task?.created ?? new Date()
     }
-    console.log(taskFromForm);
     this.localStorageService.setData(taskFromForm.title?? 'WithoutTitle',taskFromForm);
   }
 

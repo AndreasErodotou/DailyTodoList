@@ -14,6 +14,10 @@
         type="text"
         class="form-control"
       />
+
+      <div *ngIf="title?.touched && title?.invalid" class="alert alert-danger">
+        <div *ngIf="title?.errors?.['required']">Title is Required!!!</div>
+      </div>
     </div>
 
     <div class="m-3">
@@ -24,6 +28,9 @@
         pInputTextarea
         formControlName="description"
       ></textarea>
+      <div *ngIf="description?.touched && description?.invalid" class="alert alert-danger">
+        <div *ngIf="description?.errors?.['required']">Description is Required!!!</div>
+      </div>
     </div>
   </form>
 </div>
@@ -33,6 +40,7 @@
     label= "{{task?'Update':'Create'}}"
     styleClass="p-button-rounded p-button-success"
     (click)= "saveTask()"
+    [disabled] = "!taskForm.valid"
   ></p-button>
   <p-button label="Cancel" styleClass="p-button-rounded" (click) = "close()"></p-button>
 </div>
