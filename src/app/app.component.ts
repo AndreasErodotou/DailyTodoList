@@ -32,9 +32,16 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   showTaskModal(task: Task | null) {
+    let action = task? 'Edit': 'Create';
+
+    if(task?.isDone){
+      task.id = null;
+      action = 'Clone';
+    }
+
     this.ref = this.dialogService.open(TaskModalComponent, {
-      header: task? 'Edit Task': 'Create Task',
-      data: task,
+      header: action + 'Task',
+      data: {task, action},
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: false,

@@ -38,7 +38,7 @@
 
 <div class="p-dialog-footer d-flex justify-content-around">
   <p-button
-    label= "{{task?'Update':'Create'}}"
+    label= {{action}}
     styleClass="p-button-rounded p-button-success"
     (click)= "saveTask()"
     [disabled] = "!taskForm.valid"

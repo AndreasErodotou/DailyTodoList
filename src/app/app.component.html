@@ -6,22 +6,24 @@
       class="mt-4 mx-3"
       styleClass="p-button-rounded"
       icon="pi pi-plus"
-      (click) = "showTaskModal(null)"
+      (click)="showTaskModal(null)"
     ></p-button>
   </div>
   <div class="row">
     <p-card
       *ngFor="let pendingTask of pendingTasks"
-      header={{pendingTask.title}}
+      header="{{ pendingTask.title }}"
       class="col-4 my-4"
-      styleClass = "{{pendingTask.hasPriority? '': 'bg-light'}}" 
+      styleClass="{{ pendingTask.hasPriority ? '' : 'bg-light' }}"
     >
       <ng-template pTemplate="subtitle">
-        <h6 [ngClass]="{'text-danger': pendingTask.hasPriority}">
-          {{pendingTask.hasPriority? 'Priority: Urgent': 'Priority: Normal'}}
+        <h6 [ngClass]="{ 'text-danger': pendingTask.hasPriority }">
+          {{
+            pendingTask.hasPriority ? "Priority: Urgent" : "Priority: Normal"
+          }}
         </h6>
       </ng-template>
-      <p >
+      <p>
         {{ pendingTask.description }}
       </p>
       <ng-template pTemplate="footer">
@@ -53,18 +55,27 @@
   <div class="row">
     <p-card
       *ngFor="let finishedTask of finishedTasks"
-      header={{finishedTask.title}}
-      subheader="Expire in 10h"
+      header="{{ finishedTask.title }}"
       class="col-4 my-4"
+      styleClass="bg-light"
     >
+      <ng-template pTemplate="subtitle">
+        <h6 [ngClass]="{ 'text-danger': finishedTask.hasPriority }">
+          {{
+            finishedTask.hasPriority ? "Priority: Urgent" : "Priority: Normal"
+          }}
+        </h6>
+      </ng-template>
+
       <p>
-        {{finishedTask.description}}
+        {{ finishedTask.description }}
       </p>
       <ng-template pTemplate="footer">
         <p-button
           label="Clone"
           styleClass="p-button-rounded"
           icon="pi pi-clone"
+          (click) = "showTaskModal(finishedTask)"
         ></p-button>
       </ng-template>
     </p-card>
@@ -74,12 +85,19 @@
   <div class="row">
     <p-card
       *ngFor="let expiredTask of expiredTasks"
-      header={{expiredTask.title}}
-      subheader="Expire in 10h"
+      header="{{ expiredTask.title }}"
       class="col-4 my-4"
+      styleClass="bg-light"
     >
+      <ng-template pTemplate="subtitle">
+        <h6 [ngClass]="{ 'text-danger': expiredTask.hasPriority }">
+          {{
+            expiredTask.hasPriority ? "Priority: Urgent" : "Priority: Normal"
+          }}
+        </h6>
+      </ng-template>
       <p>
-        {{expiredTask.description}}
+        {{ expiredTask.description }}
       </p>
       <ng-template pTemplate="footer">
         <p-button

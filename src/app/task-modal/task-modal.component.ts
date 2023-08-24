@@ -12,6 +12,7 @@ import * as uuid from 'uuid';
 })
 export class TaskModalComponent {
   task: Task;
+  action: string;
   taskForm: FormGroup; 
 
   get title(){
@@ -23,7 +24,8 @@ export class TaskModalComponent {
   }
 
   constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, private localStorageService: LocalStorageService) {
-    this.task = this.config.data;
+    this.task = this.config.data.task;
+    this.action = this.config.data.action;
 
     this.taskForm = new FormGroup({
       title: new FormControl(this.task?.title, Validators.required),
