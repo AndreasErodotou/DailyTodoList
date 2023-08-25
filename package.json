@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy:gh": "ng build --base-href='https://AndreasErodotou.github.io/DailyTodoList/' && ngh --dir dist/daily-todo-list"
   },
   "private": true,
   "dependencies": {
