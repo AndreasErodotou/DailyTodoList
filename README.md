@@ -1,27 +1,30 @@
-# DailyTodoList
+#Daily Todo List Project
+The "Daily Todo List" project is a web application developed using Angular and PrimeNG that aims to enhance users' daily productivity by offering a comprehensive task management system. The project's primary goal is to empower users to efficiently organize their day by creating, managing, and tracking tasks.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+##Key Features
+1. **Task Creation and Management:**
+Users can easily create tasks for their day ahead. These tasks can be assigned titles, descriptions, due date (is set automatically), and priority levels. The intuitive user interface enables efficient task entry and organization.
 
-## Development server
+1. **Task Tracking:**
+Users can mark tasks as completed once they are finished during the day. The application provides clear visual indicators to differentiate between completed and pending tasks, aiding in tracking progress.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. **Expired Task Identification:**
+Tasks that were created on the previous day and remain incomplete are automatically identified as expired. This feature ensures that users are reminded of unfinished tasks and gives them the ability to 'restore' them, that means that will be transfer to pending tasks and the new deadline will be the end of today.
 
-## Code scaffolding
+1. **Automatic Task Expiry:**
+At the end of the day, any tasks that remain incomplete are automatically marked as expired. This ensures that users are encouraged to focus on the tasks at hand each day.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. **User Data:**
+Currenlty user data are saved in browser local storage. That means that are accessible only from the browser that the user use. The current impementation supports only the user interface. In the future I might connect it to a backend as well.
 
-## Build
+1. **Clone Task**
+Tasks that are done, they can be cloned and added to pending tasks.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. **User-Friendly Interface:**
+Leveraging the capabilities of PrimeNG, the project offers an intuitive and responsive user interface. Users can easily interact with their tasks, view their status, and navigate through the application's features.
 
-## Running unit tests
+##Technology Stack
+- Angular: A modern JavaScript framework for building web applications.
+- PrimeNG: A UI component library for Angular applications, providing rich and responsive user interface elements.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The "Daily Todo List" project aims to streamline users' daily routines by providing an effective task management solution that combines task creation, organization, and tracking. Its integration of Angular and PrimeNG technologies ensures a modern and visually appealing user experience, enhancing users' productivity and enabling them to make the most of each day.
