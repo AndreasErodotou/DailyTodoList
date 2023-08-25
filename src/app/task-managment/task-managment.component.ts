@@ -26,6 +26,17 @@ export class TaskManagmentComponent implements OnInit, OnDestroy{
     return this.expiredTasks.length > 0;
   }
 
+  private get endOfDateToday(){
+    const date: Date = new Date();
+    date.setHours(23,59,59,999);
+    return date;
+  }
+
+  private get startOfDateYesterday(){
+    const date: Date = new Date(new Date().getTime() - 1000*60*60*24);
+    date.setHours(0,0,0,0);
+    return date;
+  }
 
   constructor(
     public dialogService: DialogService,
@@ -42,12 +53,13 @@ export class TaskManagmentComponent implements OnInit, OnDestroy{
     const tasks = this.localStorageService.getAllData();
 
     this.pendingTasks = tasks
-      .filter((t) => t.isDone === false && this.addADayToDate(t.created) > this.getEndOfDate()) // filter tasks that are not done and created today
+      .filter((t) => t.isDone === false && this.addADayToDate(t.created) > this.endOfDateToday) // filter tasks that are not done and created today
       .sort((t1, t2) => (t2.hasPriority >= t1.hasPriority ? 1 : -1)); // put priority tasks first
 
-    this.finishedTasks = tasks.filter((t) => t.isDone === true  && this.addADayToDate(t.created) > this.getEndOfDate()); // filter tasks that are done and created today
+    this.finishedTasks = tasks.filter((t) => t.isDone === true  && this.addADayToDate(t.created) > this.endOfDateToday); // filter tasks that are done and created today
 
-    this.expiredTasks = tasks.filter(t =>  this.addADayToDate(t.created) <= this.getEndOfDate()) // filter tasks that are created before today
+    console.log(this.startOfDateYesterday);
+    this.expiredTasks = tasks.filter(t =>  t.created && this.addADayToDate(t.created) <= this.endOfDateToday && t.created > this.startOfDateYesterday) // filter tasks that are created yesterday only
   }
 
   private addADayToDate(date?: Date){
@@ -56,12 +68,6 @@ export class TaskManagmentComponent implements OnInit, OnDestroy{
     }
 
     return new Date(date.getTime() + 1000*60*60*24);
-  }
-
-  private getEndOfDate(){
-    const date: Date = new Date();
-    date.setHours(23,59,59,999);
-    return date;
   }
 
   showTaskModal(task: Task | null) {
