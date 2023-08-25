@@ -48,6 +48,12 @@ export class TaskManagmentComponent implements OnInit, OnDestroy{
   ngOnInit() {
     this.reloadData();
   }
+  
+  ngOnDestroy() {
+    if (this.ref) {
+      this.ref.close();
+    }
+  }
 
   reloadData() {
     const tasks = this.localStorageService.getAllData();
@@ -60,14 +66,6 @@ export class TaskManagmentComponent implements OnInit, OnDestroy{
 
     console.log(this.startOfDateYesterday);
     this.expiredTasks = tasks.filter(t =>  t.created && this.addADayToDate(t.created) <= this.endOfDateToday && t.created > this.startOfDateYesterday) // filter tasks that are created yesterday only
-  }
-
-  private addADayToDate(date?: Date){
-    if(!date){
-      return new Date();
-    }
-
-    return new Date(date.getTime() + 1000*60*60*24);
   }
 
   showTaskModal(task: Task | null) {
@@ -123,13 +121,36 @@ export class TaskManagmentComponent implements OnInit, OnDestroy{
           summary: 'Confirmed',
           detail: 'Task Removed',
         });
-      },
+      }
     });
   }
 
-  ngOnDestroy() {
-    if (this.ref) {
-      this.ref.close();
+  onRestore(task: Task) {
+    this.confirmationService.confirm({
+      message: `Are you sure that you want to restore task '${task.title}'?`,
+      accept: () => {
+        const newTask = {...task}; 
+        newTask.created = new Date();
+        
+        this.expiredTasks.splice(this.expiredTasks.indexOf(task), 1);
+        this.pendingTasks.push(newTask);
+
+        this.localStorageService.setData(newTask.id, newTask);
+        
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Confirmed',
+          detail: 'Task Restored',
+        });
+      }
+    });
+  }
+
+  private addADayToDate(date?: Date){
+    if(!date){
+      return new Date();
     }
+
+    return new Date(date.getTime() + 1000*60*60*24);
   }
 }
