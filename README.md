@@ -1,7 +1,7 @@
-#Daily Todo List Project
+# Daily Todo List Project
 The "Daily Todo List" project is a web application developed using Angular and PrimeNG that aims to enhance users' daily productivity by offering a comprehensive task management system. The project's primary goal is to empower users to efficiently organize their day by creating, managing, and tracking tasks.
 
-##Key Features
+## Key Features
 1. **Task Creation and Management:**
 Users can easily create tasks for their day ahead. These tasks can be assigned titles, descriptions, due date (is set automatically), and priority levels. The intuitive user interface enables efficient task entry and organization.
 
@@ -23,7 +23,7 @@ Tasks that are done, they can be cloned and added to pending tasks.
 1. **User-Friendly Interface:**
 Leveraging the capabilities of PrimeNG, the project offers an intuitive and responsive user interface. Users can easily interact with their tasks, view their status, and navigate through the application's features.
 
-##Technology Stack
+## Technology Stack
 - Angular: A modern JavaScript framework for building web applications.
 - PrimeNG: A UI component library for Angular applications, providing rich and responsive user interface elements.
 
