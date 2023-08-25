@@ -14,11 +14,13 @@ import { LocalStorageService } from './core/services/local-storage.service';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { TaskManagmentComponent } from './task-managment/task-managment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TaskModalComponent
+    TaskModalComponent,
+    TaskManagmentComponent
   ],
   imports: [
     BrowserModule,

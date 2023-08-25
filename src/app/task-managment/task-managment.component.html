@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="d-flex">
+    <h1 class="mt-4">Pending Tasks</h1>
+
+    <p-button
+      class="mt-4 mx-3"
+      styleClass="p-button-rounded"
+      icon="pi pi-plus"
+      (click)="showTaskModal(null)"
+    ></p-button>
+  </div>
+  <div class="row">
+    <p-card
+      *ngFor="let pendingTask of pendingTasks"
+      header="{{ pendingTask.title }}"
+      class="col-xl-4 col-lg-6 col-md-6 my-4"
+      styleClass="{{ pendingTask.hasPriority ? '' : 'bg-light' }}"
+    >
+      <ng-template pTemplate="subtitle">
+        <h6 [ngClass]="{ 'text-danger': pendingTask.hasPriority }">
+          {{
+            pendingTask.hasPriority ? "Priority: Urgent" : "Priority: Normal"
+          }}
+        </h6>
+      </ng-template>
+      <p>
+        {{ pendingTask.description }}
+      </p>
+      <ng-template pTemplate="footer">
+        <div class="d-flex justify-content-around">
+          <p-button
+            label="Edit"
+            icon="pi pi-pencil"
+            styleClass="p-button-rounded"
+            (click)="showTaskModal(pendingTask)"
+          ></p-button>
+          <p-button
+            label="Done"
+            styleClass="p-button-rounded p-button-success"
+            icon="pi pi-check"
+            (click)="onDone(pendingTask)"
+          ></p-button>
+          <p-button
+            label="Delete"
+            icon="pi pi-times"
+            styleClass="p-button-rounded p-button-danger"
+            (click)="onRemove(pendingTask)"
+          ></p-button>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <h1 *ngIf="hasFinishedTasks" class="mt-4">Finished Tasks</h1>
+  <div class="row">
+    <p-card
+      *ngFor="let finishedTask of finishedTasks"
+      header="{{ finishedTask.title }}"
+      class="col-lg-4 col-md-6 my-4"
+      styleClass="bg-light"
+    >
+      <ng-template pTemplate="subtitle">
+        <h6 [ngClass]="{ 'text-danger': finishedTask.hasPriority }">
+          {{
+            finishedTask.hasPriority ? "Priority: Urgent" : "Priority: Normal"
+          }}
+        </h6>
+      </ng-template>
+
+      <p>
+        {{ finishedTask.description }}
+      </p>
+      <ng-template pTemplate="footer">
+        <p-button
+          label="Clone"
+          styleClass="p-button-rounded"
+          icon="pi pi-clone"
+          (click) = "showTaskModal(finishedTask)"
+        ></p-button>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <h1 *ngIf="hasExpiredTasks" class="mt-4">Expired Tasks</h1>
+  <div class="row">
+    <p-card
+      *ngFor="let expiredTask of expiredTasks"
+      header="{{ expiredTask.title }}"
+      class="col-lg-4 col-md-6 my-4"
+      styleClass="bg-light"
+    >
+      <ng-template pTemplate="subtitle">
+        <h6 [ngClass]="{ 'text-danger': expiredTask.hasPriority }">
+          {{
+            expiredTask.hasPriority ? "Priority: Urgent" : "Priority: Normal"
+          }}
+        </h6>
+      </ng-template>
+      <p>
+        {{ expiredTask.description }}
+      </p>
+      <ng-template pTemplate="footer">
+        <p-button
+          label="Restore"
+          styleClass="p-button-rounded"
+          icon="pi pi-refresh"
+        ></p-button>
+      </ng-template>
+    </p-card>
+  </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>
+<p-toast position="bottom-center"></p-toast>

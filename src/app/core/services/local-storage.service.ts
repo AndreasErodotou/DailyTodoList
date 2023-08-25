@@ -13,7 +13,9 @@ export class LocalStorageService {
       return;
     }
 
-    localStorage.setItem(key, JSON.stringify(data));
+    const serializedObject = JSON.stringify(data);
+
+    localStorage.setItem(key, serializedObject);
   }
 
   getData(key: string | null): Task | null {
@@ -21,8 +23,15 @@ export class LocalStorageService {
       return null;
     }
 
-    const data = localStorage.getItem(key);
-    return data? JSON.parse(data) : null;
+    const serializedObject = localStorage.getItem(key);
+
+    if(!serializedObject){
+      return null;
+    }
+
+    const task = JSON.parse(serializedObject);
+    task.created = new Date(task.created);
+    return task;
   }
 
   getAllData(): Task[] {
