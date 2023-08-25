@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { Task } from '../models/task';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageService {
-
-  constructor() { }
+  constructor() {}
 
   setData(key: string | null, data: Task): void {
-    if(!key){
+    if (!key) {
       return;
     }
 
@@ -19,13 +18,13 @@ export class LocalStorageService {
   }
 
   getData(key: string | null): Task | null {
-    if(!key){
+    if (!key) {
       return null;
     }
 
     const serializedObject = localStorage.getItem(key);
 
-    if(!serializedObject){
+    if (!serializedObject) {
       return null;
     }
 
@@ -41,7 +40,7 @@ export class LocalStorageService {
       const key = localStorage.key(i);
       const data = this.getData(key);
 
-      if(!data){
+      if (!data) {
         continue;
       }
 
@@ -52,10 +51,10 @@ export class LocalStorageService {
   }
 
   removeData(key: string | null): void {
-    if(!key){
+    if (!key) {
       return;
     }
-    
+
     localStorage.removeItem(key);
   }
 }

@@ -17,11 +17,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { TaskManagmentComponent } from './task-managment/task-managment.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TaskModalComponent,
-    TaskManagmentComponent
-  ],
+  declarations: [AppComponent, TaskModalComponent, TaskManagmentComponent],
   imports: [
     BrowserModule,
     ButtonModule,
@@ -33,9 +29,14 @@ import { TaskManagmentComponent } from './task-managment/task-managment.componen
     InputTextModule,
     InputTextareaModule,
     ToastModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
   ],
-  providers: [DialogService, LocalStorageService, MessageService, ConfirmationService],
-  bootstrap: [AppComponent]
+  providers: [
+    DialogService,
+    LocalStorageService,
+    MessageService,
+    ConfirmationService,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

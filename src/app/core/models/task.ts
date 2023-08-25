@@ -6,7 +6,7 @@ export class Task {
   public created?: Date;
   public isDone?: boolean;
 
-  constructor(data: Task){
-    Object.assign(this,data);
+  constructor(data: Task) {
+    Object.assign(this, data);
   }
 }

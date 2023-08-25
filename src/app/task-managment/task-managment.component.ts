@@ -8,33 +8,32 @@ import { TaskModalComponent } from '../task-modal/task-modal.component';
 @Component({
   selector: 'app-task-managment',
   templateUrl: './task-managment.component.html',
-  styleUrls: ['./task-managment.component.css']
+  styleUrls: ['./task-managment.component.css'],
 })
-export class TaskManagmentComponent implements OnInit, OnDestroy{
+export class TaskManagmentComponent implements OnInit, OnDestroy {
   ref: DynamicDialogRef | undefined;
 
   pendingTasks: Task[] = [];
   finishedTasks: Task[] = [];
   expiredTasks: Task[] = [];
 
-  
-  get hasFinishedTasks(){
+  get hasFinishedTasks() {
     return this.finishedTasks.length > 0;
   }
 
-  get hasExpiredTasks(){
+  get hasExpiredTasks() {
     return this.expiredTasks.length > 0;
   }
 
-  private get endOfDateToday(){
+  private get endOfDateToday() {
     const date: Date = new Date();
-    date.setHours(23,59,59,999);
+    date.setHours(23, 59, 59, 999);
     return date;
   }
 
-  private get startOfDateYesterday(){
-    const date: Date = new Date(new Date().getTime() - 1000*60*60*24);
-    date.setHours(0,0,0,0);
+  private get startOfDateYesterday() {
+    const date: Date = new Date(new Date().getTime() - 1000 * 60 * 60 * 24);
+    date.setHours(0, 0, 0, 0);
     return date;
   }
 
@@ -48,7 +47,7 @@ export class TaskManagmentComponent implements OnInit, OnDestroy{
   ngOnInit() {
     this.reloadData();
   }
-  
+
   ngOnDestroy() {
     if (this.ref) {
       this.ref.close();
@@ -58,13 +57,29 @@ export class TaskManagmentComponent implements OnInit, OnDestroy{
   reloadData() {
     const tasks = this.localStorageService.getAllData();
 
+    // filter tasks that are not done and created today
     this.pendingTasks = tasks
-      .filter((t) => t.isDone === false && this.addADayToDate(t.created) > this.endOfDateToday) // filter tasks that are not done and created today
+      .filter(
+        (t) =>
+          t.isDone === false &&
+          this.addADayToDate(t.created) > this.endOfDateToday
+      ) 
       .sort((t1, t2) => (t2.hasPriority >= t1.hasPriority ? 1 : -1)); // put priority tasks first
 
-    this.finishedTasks = tasks.filter((t) => t.isDone === true  && this.addADayToDate(t.created) > this.endOfDateToday); // filter tasks that are done and created today
+    // filter tasks that are done and created today
+    this.finishedTasks = tasks.filter(
+      (t) =>
+        t.isDone === true && this.addADayToDate(t.created) > this.endOfDateToday
+    ); 
 
-    this.expiredTasks = tasks.filter(t =>  t.isDone === false && t.created && this.addADayToDate(t.created) <= this.endOfDateToday && t.created > this.startOfDateYesterday) // filter tasks that are created yesterday only and remain undone
+    // filter tasks that are created yesterday only and remain undone
+    this.expiredTasks = tasks.filter(
+      (t) =>
+        t.isDone === false &&
+        t.created &&
+        this.addADayToDate(t.created) <= this.endOfDateToday &&
+        t.created > this.startOfDateYesterday
+    ); 
   }
 
   showTaskModal(task: Task | null) {
@@ -120,7 +135,7 @@ export class TaskManagmentComponent implements OnInit, OnDestroy{
           summary: 'Confirmed',
           detail: 'Task Removed',
         });
-      }
+      },
     });
   }
 
@@ -128,28 +143,28 @@ export class TaskManagmentComponent implements OnInit, OnDestroy{
     this.confirmationService.confirm({
       message: `Are you sure that you want to restore task '${task.title}'?`,
       accept: () => {
-        const newTask = {...task}; 
+        const newTask = { ...task };
         newTask.created = new Date();
-        
+
         this.expiredTasks.splice(this.expiredTasks.indexOf(task), 1);
         this.pendingTasks.push(newTask);
 
         this.localStorageService.setData(newTask.id, newTask);
-        
+
         this.messageService.add({
           severity: 'success',
           summary: 'Confirmed',
           detail: 'Task Restored',
         });
-      }
+      },
     });
   }
 
-  private addADayToDate(date?: Date){
-    if(!date){
+  private addADayToDate(date?: Date) {
+    if (!date) {
       return new Date();
     }
 
-    return new Date(date.getTime() + 1000*60*60*24);
+    return new Date(date.getTime() + 1000 * 60 * 60 * 24);
   }
 }
