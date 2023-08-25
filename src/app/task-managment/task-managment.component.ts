@@ -64,8 +64,7 @@ export class TaskManagmentComponent implements OnInit, OnDestroy{
 
     this.finishedTasks = tasks.filter((t) => t.isDone === true  && this.addADayToDate(t.created) > this.endOfDateToday); // filter tasks that are done and created today
 
-    console.log(this.startOfDateYesterday);
-    this.expiredTasks = tasks.filter(t =>  t.created && this.addADayToDate(t.created) <= this.endOfDateToday && t.created > this.startOfDateYesterday) // filter tasks that are created yesterday only
+    this.expiredTasks = tasks.filter(t =>  t.isDone === false && t.created && this.addADayToDate(t.created) <= this.endOfDateToday && t.created > this.startOfDateYesterday) // filter tasks that are created yesterday only and remain undone
   }
 
   showTaskModal(task: Task | null) {
