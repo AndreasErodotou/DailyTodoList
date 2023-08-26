@@ -53,33 +53,20 @@
   ></app-task-managment-table-finished>
 
   <h1 *ngIf="hasExpiredTasks" class="mt-4">Expired Tasks</h1>
-  <div class="row">
-    <p-card
-      *ngFor="let expiredTask of expiredTasks"
-      header="{{ expiredTask.title }}"
-      class="col-lg-4 col-md-6 my-4"
-      styleClass="bg-light"
-    >
-      <ng-template pTemplate="subtitle">
-        <h6 [ngClass]="{ 'text-danger': expiredTask.hasPriority }">
-          {{
-            expiredTask.hasPriority ? "Priority: Urgent" : "Priority: Normal"
-          }}
-        </h6>
-      </ng-template>
-      <p>
-        {{ expiredTask.description }}
-      </p>
-      <ng-template pTemplate="footer">
-        <p-button
-          label="Restore"
-          styleClass="p-button-rounded"
-          icon="pi pi-refresh"
-          (click)="onRestore(expiredTask)"
-        ></p-button>
-      </ng-template>
-    </p-card>
-  </div>
+
+  <app-task-managment-cards-expired
+    *ngIf="isShownAsCard"
+    [pendingTasks]="pendingTasks"
+    [expiredTasks]="expiredTasks"
+    (onRestore)="onRestore($event)"
+  ></app-task-managment-cards-expired>
+
+  <app-task-managment-table-expired
+    *ngIf="!isShownAsCard"
+    [pendingTasks]="pendingTasks"
+    [expiredTasks]="expiredTasks"
+    (onRestore)="onRestore($event)"
+  ></app-task-managment-table-expired>
 
   <div class="m-auto">
     <p-confirmPopup class="m-auto"></p-confirmPopup>

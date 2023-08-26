@@ -1,0 +1,42 @@
+<div class="row mt-4">
+  <p-table
+    [value]="expiredTasks"
+    [paginator]="true"
+    [rowsPerPageOptions]="[5, 10]"
+    [rows]="5"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="title">
+          Title<p-sortIcon field="title"></p-sortIcon>
+        </th>
+        <th pSortableColumn="description">
+          Description<p-sortIcon field="description"></p-sortIcon>
+        </th>
+        <th pSortableColumn="hasPriority" style="width: 115px">
+          Priority<p-sortIcon field="hasPriority"></p-sortIcon>
+        </th>
+        <th style="width: 210px">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-expiredTask>
+      <tr>
+        <td>{{ expiredTask.title }}</td>
+        <td class="w-50">{{ expiredTask.description }}</td>
+        <td [ngClass]="{ 'text-danger': expiredTask.hasPriority }">
+          {{ expiredTask.hasPriority ? "Urgent" : "Normal" }}
+        </td>
+        <td>
+          <div class="d-flex justify-content-center">
+            <p-button
+              label="Restore"
+              styleClass="p-button-rounded"
+              icon="pi pi-refresh"
+              (click)="callOnRestore(expiredTask)"
+            ></p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

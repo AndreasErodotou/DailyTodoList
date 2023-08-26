@@ -20,9 +20,11 @@ import { TaskManagmentTablePendingComponent } from './task-managment/components/
 import { TaskManagmentCardsPendingComponent } from './task-managment/components/task-managment-cards-pending/task-managment-cards-pending.component';
 import { TaskManagmentTableFinishedComponent } from './task-managment/components/task-managment-table-finished/task-managment-table-finished.component';
 import { TaskManagmentCardsFinishedComponent } from './task-managment/components/task-managment-cards-finished/task-managment-cards-finished.component';
+import { TaskManagmentTableExpiredComponent } from './task-managment/components/task-managment-table-expired/task-managment-table-expired.component';
+import { TaskManagmentCardsExpiredComponent } from './task-managment/components/task-managment-cards-expired/task-managment-cards-expired.component';
 
 @NgModule({
-  declarations: [AppComponent, TaskModalComponent, TaskManagmentComponent, TaskManagmentTablePendingComponent, TaskManagmentCardsPendingComponent, TaskManagmentTableFinishedComponent, TaskManagmentCardsFinishedComponent],
+  declarations: [AppComponent, TaskModalComponent, TaskManagmentComponent, TaskManagmentTablePendingComponent, TaskManagmentCardsPendingComponent, TaskManagmentTableFinishedComponent, TaskManagmentCardsFinishedComponent, TaskManagmentTableExpiredComponent, TaskManagmentCardsExpiredComponent],
   imports: [
     BrowserModule,
     ButtonModule,
