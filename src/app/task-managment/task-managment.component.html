@@ -22,18 +22,18 @@
     *ngIf="isShownAsCard"
     [pendingTasks]="pendingTasks"
     [finishedTasks]="finishedTasks"
-    [showTaskModal]="showTaskModal"
-    [onDone]="onDone"
-    [onRemove]="onRemove"
+    (showTaskModal)="showTaskModal($event)"
+    (onDone)="onDone($event)"
+    (onRemove)="onRemove($event)"
   ></app-task-managment-cards-pending>
 
   <app-task-managment-table-pending
     *ngIf="!isShownAsCard"
     [pendingTasks]="pendingTasks"
     [finishedTasks]="finishedTasks"
-    [showTaskModal]="showTaskModal"
-    [onDone]="onDone"
-    [onRemove]="onRemove"
+    (showTaskModal)="showTaskModal($event)"
+    (onDone)="onDone($event)"
+    (onRemove)="onRemove($event)"
   ></app-task-managment-table-pending>
 
   <h1 *ngIf="hasFinishedTasks" class="mt-4">Finished Tasks</h1>
@@ -42,14 +42,14 @@
     *ngIf="isShownAsCard"
     [pendingTasks]="pendingTasks"
     [finishedTasks]="finishedTasks"
-    [showTaskModal]="showTaskModal"
+    (showTaskModal)="showTaskModal($event)"
   ></app-task-managment-cards-finished>
 
   <app-task-managment-table-finished
     *ngIf="!isShownAsCard"
     [pendingTasks]="pendingTasks"
     [finishedTasks]="finishedTasks"
-    [showTaskModal]="showTaskModal"
+    (showTaskModal)="showTaskModal($event)"
   ></app-task-managment-table-finished>
 
   <h1 *ngIf="hasExpiredTasks" class="mt-4">Expired Tasks</h1>

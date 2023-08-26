@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Task } from 'src/app/core/models/task';
@@ -12,9 +12,9 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 export class TaskManagmentCardsPendingComponent {
   @Input() pendingTasks: Task[] = [];
   @Input() finishedTasks: Task[] = [];
-  @Input() showTaskModal!: (task: Task | null) => void | null;
-  @Input() onDone!: (task: Task) => void;
-  @Input() onRemove!: (task: Task) => void;
+  @Output() showTaskModal = new EventEmitter();
+  @Output() onDone = new EventEmitter();
+  @Output() onRemove = new EventEmitter();
 
   constructor(
     public dialogService: DialogService,
@@ -25,19 +25,19 @@ export class TaskManagmentCardsPendingComponent {
 
   callShowTaskModal(task: Task) {
     if (this.showTaskModal) {
-      this.showTaskModal(task);
+      this.showTaskModal.emit(task);
     }
   }
 
   callOnDone(task: Task) {
     if (this.onDone) {
-      this.onDone(task);
+      this.onDone.emit(task);
     }
   }
 
   callOnRemove(task: Task) {
     if (this.onRemove) {
-      this.onRemove(task);
+      this.onRemove.emit(task);
     }
   }
   

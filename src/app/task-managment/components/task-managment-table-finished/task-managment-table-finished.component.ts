@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Task } from 'src/app/core/models/task';
@@ -12,18 +12,17 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 export class TaskManagmentTableFinishedComponent {
   @Input() pendingTasks: Task[] = [];
   @Input() finishedTasks: Task[] = [];
-  @Input() showTaskModal!: (task: Task | null) => void | null;
+  @Output() showTaskModal = new EventEmitter();
 
   constructor(
     public dialogService: DialogService,
     private messageService: MessageService,
-    private localStorageService: LocalStorageService,
-    private confirmationService: ConfirmationService
+    private localStorageService: LocalStorageService
   ) {}
 
   callShowTaskModal(task: Task) {
     if (this.showTaskModal) {
-      this.showTaskModal(task);
+      this.showTaskModal.emit(task);
     }
   }
 }
