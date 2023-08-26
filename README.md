@@ -26,9 +26,16 @@ Tasks that are expired, they can be restored and will be added to pending tasks 
 1. **User-Friendly Interface:**
 Leveraging the capabilities of PrimeNG, the project offers an intuitive and responsive user interface. Users can easily interact with their tasks, view their status, and navigate through the application's features.
 
-## Future Extensions
 1. **Switch View Mode:**
-Users will be able to switch to card and table view modes
+Users are able to switch to card and table view modes.
+
+## Future Extensions
+
+1. **Use Tabs:**
+Show data in 3 different tabs:
+    - Pending Tasks Tab
+    - Finished Tasks Tab
+    - Expired Tasks Tab
 
 1. **Connect It To Backend**
 User data will be saved to a db
