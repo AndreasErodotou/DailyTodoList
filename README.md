@@ -31,8 +31,7 @@ Users are able to switch to card and table view modes.
 
 ## Future Extensions
 
-1. **Use Tabs:**
-Show data in 3 different tabs:
+1. **Show data in 3 different tabs:**
     - Pending Tasks Tab
     - Finished Tasks Tab
     - Expired Tasks Tab
