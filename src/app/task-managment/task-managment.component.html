@@ -8,8 +8,16 @@
       icon="pi pi-plus"
       (click)="showTaskModal(null)"
     ></p-button>
+
+    <p-button
+      label="{{ isShownAsCard ? 'Cards to Table' : 'Table to Cards' }}"
+      class="mt-4 mx-3"
+      styleClass="p-button-rounded"
+      (click)="setIsShownAsCard()"
+      icon="pi pi-arrow-right-arrow-left"
+    ></p-button>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="isShownAsCard">
     <p-card
       *ngFor="let pendingTask of pendingTasks"
       header="{{ pendingTask.title }}"
@@ -49,6 +57,58 @@
         </div>
       </ng-template>
     </p-card>
+  </div>
+  <div class="row mt-4" *ngIf="!isShownAsCard">
+    <p-table
+      [value]="pendingTasks"
+      [paginator]="true"
+      [rowsPerPageOptions]="[5, 10]"
+      [rows]="5"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="title">
+            Title<p-sortIcon field="title"></p-sortIcon>
+          </th>
+          <th pSortableColumn="description">
+            Description<p-sortIcon field="description"></p-sortIcon>
+          </th>
+          <th pSortableColumn="hasPriority" style="width: 115px">
+            Priority<p-sortIcon field="hasPriority"></p-sortIcon>
+          </th>
+          <th style="width: 210px">Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-pendingTask>
+        <tr>
+          <td>{{ pendingTask.title }}</td>
+          <td class="w-50">{{ pendingTask.description }}</td>
+          <td [ngClass]="{ 'text-danger': pendingTask.hasPriority }">
+            {{ pendingTask.hasPriority ? "Urgent" : "Normal" }}
+          </td>
+          <td>
+            <div class="d-flex justify-content-center">
+              <p-button
+                icon="pi pi-pencil"
+                styleClass="p-button-rounded"
+                (click)="showTaskModal(pendingTask)"
+              ></p-button>
+              <p-button
+                styleClass="p-button-rounded p-button-success"
+                icon="pi pi-check"
+                class="mx-3"
+                (click)="onDone(pendingTask)"
+              ></p-button>
+              <p-button
+                icon="pi pi-times"
+                styleClass="p-button-rounded p-button-danger"
+                (click)="onRemove(pendingTask)"
+              ></p-button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
 
   <h1 *ngIf="hasFinishedTasks" class="mt-4">Finished Tasks</h1>
@@ -109,7 +169,9 @@
       </ng-template>
     </p-card>
   </div>
-</div>
 
-<p-confirmPopup></p-confirmPopup>
-<p-toast position="bottom-center"></p-toast>
+  <div class="m-auto">
+    <p-confirmPopup class="m-auto"></p-confirmPopup>
+  </div>
+  <p-toast position="bottom-center"></p-toast>
+</div>

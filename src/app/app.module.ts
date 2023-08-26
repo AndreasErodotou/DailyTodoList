@@ -15,6 +15,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { TaskManagmentComponent } from './task-managment/task-managment.component';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [AppComponent, TaskModalComponent, TaskManagmentComponent],
@@ -30,6 +31,7 @@ import { TaskManagmentComponent } from './task-managment/task-managment.componen
     InputTextareaModule,
     ToastModule,
     ConfirmPopupModule,
+    TableModule,
   ],
   providers: [
     DialogService,

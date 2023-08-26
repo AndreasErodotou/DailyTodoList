@@ -17,6 +17,8 @@ export class TaskManagmentComponent implements OnInit, OnDestroy {
   finishedTasks: Task[] = [];
   expiredTasks: Task[] = [];
 
+  isShownAsCard: boolean = true;
+
   get hasFinishedTasks() {
     return this.finishedTasks.length > 0;
   }
@@ -136,6 +138,8 @@ export class TaskManagmentComponent implements OnInit, OnDestroy {
           detail: 'Task Removed',
         });
       },
+      reject: () => {
+      }
     });
   }
 
@@ -157,7 +161,13 @@ export class TaskManagmentComponent implements OnInit, OnDestroy {
           detail: 'Task Restored',
         });
       },
+      reject: () => {
+      }
     });
+  }
+
+  setIsShownAsCard() {
+    this.isShownAsCard = !this.isShownAsCard;
   }
 
   private addADayToDate(date?: Date) {

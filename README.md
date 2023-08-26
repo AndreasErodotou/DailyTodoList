@@ -18,10 +18,23 @@ At the end of the day, any tasks that remain incomplete are automatically marked
 Currenlty user data are saved in browser local storage. That means that are accessible only from the browser that the user use. The current impementation supports only the user interface. In the future I might connect it to a backend as well.
 
 1. **Clone Task**
-Tasks that are done, they can be cloned and added to pending tasks.
+Tasks that are done, they can be cloned and will be added to pending tasks again.
+
+1. **Restore Task**
+Tasks that are expired, they can be restored and will be added to pending tasks again.
 
 1. **User-Friendly Interface:**
 Leveraging the capabilities of PrimeNG, the project offers an intuitive and responsive user interface. Users can easily interact with their tasks, view their status, and navigate through the application's features.
+
+## Future Extensions
+1. **Switch View Mode:**
+Users will be able to switch to card and table view modes
+
+1. **Connect It To Backend**
+User data will be saved to a db
+
+1. **Login or Have a Unique Id**
+User will be able to log in or have a unique id that it will be created automatically, with this addition users will be able to have their own data and retieve them from anywhere
 
 ## Technology Stack
 - Angular: A modern JavaScript framework for building web applications.
