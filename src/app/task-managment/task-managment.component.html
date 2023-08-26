@@ -17,99 +17,24 @@
       icon="pi pi-arrow-right-arrow-left"
     ></p-button>
   </div>
-  <div class="row" *ngIf="isShownAsCard">
-    <p-card
-      *ngFor="let pendingTask of pendingTasks"
-      header="{{ pendingTask.title }}"
-      class="col-xl-4 col-lg-6 col-md-6 my-4"
-      styleClass="{{ pendingTask.hasPriority ? '' : 'bg-light' }}"
-    >
-      <ng-template pTemplate="subtitle">
-        <h6 [ngClass]="{ 'text-danger': pendingTask.hasPriority }">
-          {{
-            pendingTask.hasPriority ? "Priority: Urgent" : "Priority: Normal"
-          }}
-        </h6>
-      </ng-template>
-      <p>
-        {{ pendingTask.description }}
-      </p>
-      <ng-template pTemplate="footer">
-        <div class="d-flex justify-content-around">
-          <p-button
-            label="Edit"
-            icon="pi pi-pencil"
-            styleClass="p-button-rounded"
-            (click)="showTaskModal(pendingTask)"
-          ></p-button>
-          <p-button
-            label="Done"
-            styleClass="p-button-rounded p-button-success"
-            icon="pi pi-check"
-            (click)="onDone(pendingTask)"
-          ></p-button>
-          <p-button
-            label="Delete"
-            icon="pi pi-times"
-            styleClass="p-button-rounded p-button-danger"
-            (click)="onRemove(pendingTask)"
-          ></p-button>
-        </div>
-      </ng-template>
-    </p-card>
-  </div>
-  <div class="row mt-4" *ngIf="!isShownAsCard">
-    <p-table
-      [value]="pendingTasks"
-      [paginator]="true"
-      [rowsPerPageOptions]="[5, 10]"
-      [rows]="5"
-    >
-      <ng-template pTemplate="header">
-        <tr>
-          <th pSortableColumn="title">
-            Title<p-sortIcon field="title"></p-sortIcon>
-          </th>
-          <th pSortableColumn="description">
-            Description<p-sortIcon field="description"></p-sortIcon>
-          </th>
-          <th pSortableColumn="hasPriority" style="width: 115px">
-            Priority<p-sortIcon field="hasPriority"></p-sortIcon>
-          </th>
-          <th style="width: 210px">Actions</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-pendingTask>
-        <tr>
-          <td>{{ pendingTask.title }}</td>
-          <td class="w-50">{{ pendingTask.description }}</td>
-          <td [ngClass]="{ 'text-danger': pendingTask.hasPriority }">
-            {{ pendingTask.hasPriority ? "Urgent" : "Normal" }}
-          </td>
-          <td>
-            <div class="d-flex justify-content-center">
-              <p-button
-                icon="pi pi-pencil"
-                styleClass="p-button-rounded"
-                (click)="showTaskModal(pendingTask)"
-              ></p-button>
-              <p-button
-                styleClass="p-button-rounded p-button-success"
-                icon="pi pi-check"
-                class="mx-3"
-                (click)="onDone(pendingTask)"
-              ></p-button>
-              <p-button
-                icon="pi pi-times"
-                styleClass="p-button-rounded p-button-danger"
-                (click)="onRemove(pendingTask)"
-              ></p-button>
-            </div>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
+
+  <app-task-managment-cards-pending
+    *ngIf="isShownAsCard"
+    [pendingTasks]="pendingTasks"
+    [finishedTasks]="finishedTasks"
+    [showTaskModal]="showTaskModal"
+    [onDone]="onDone"
+    [onRemove]="onRemove"
+  ></app-task-managment-cards-pending>
+
+  <app-task-managment-table-pending
+    *ngIf="!isShownAsCard"
+    [pendingTasks]="pendingTasks"
+    [finishedTasks]="finishedTasks"
+    [showTaskModal]="showTaskModal"
+    [onDone]="onDone"
+    [onRemove]="onRemove"
+  ></app-task-managment-table-pending>
 
   <h1 *ngIf="hasFinishedTasks" class="mt-4">Finished Tasks</h1>
   <div class="row">

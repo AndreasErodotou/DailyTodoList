@@ -16,9 +16,11 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { TaskManagmentComponent } from './task-managment/task-managment.component';
 import { TableModule } from 'primeng/table';
+import { TaskManagmentTablePendingComponent } from './task-managment/components/task-managment-table-pending/task-managment-table-pending.component';
+import { TaskManagmentCardsPendingComponent } from './task-managment/components/task-managment-cards-pending/task-managment-cards-pending.component';
 
 @NgModule({
-  declarations: [AppComponent, TaskModalComponent, TaskManagmentComponent],
+  declarations: [AppComponent, TaskModalComponent, TaskManagmentComponent, TaskManagmentTablePendingComponent, TaskManagmentCardsPendingComponent],
   imports: [
     BrowserModule,
     ButtonModule,

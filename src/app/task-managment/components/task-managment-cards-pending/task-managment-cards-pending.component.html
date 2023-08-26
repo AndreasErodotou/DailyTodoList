@@ -1,0 +1,41 @@
+<div class="row">
+  <p-card
+    *ngFor="let pendingTask of pendingTasks"
+    header="{{ pendingTask.title }}"
+    class="col-xl-4 col-lg-6 col-md-6 my-4"
+    styleClass="{{ pendingTask.hasPriority ? '' : 'bg-light' }}"
+  >
+    <ng-template pTemplate="subtitle">
+      <h6 [ngClass]="{ 'text-danger': pendingTask.hasPriority }">
+        {{
+          pendingTask.hasPriority ? "Priority: Urgent" : "Priority: Normal"
+        }}
+      </h6>
+    </ng-template>
+    <p>
+      {{ pendingTask.description }}
+    </p>
+    <ng-template pTemplate="footer">
+      <div class="d-flex justify-content-around">
+        <p-button
+          label="Edit"
+          icon="pi pi-pencil"
+          styleClass="p-button-rounded"
+          (click)="callShowTaskModal(pendingTask)"
+        ></p-button>
+        <p-button
+          label="Done"
+          styleClass="p-button-rounded p-button-success"
+          icon="pi pi-check"
+          (click)="callOnDone(pendingTask)"
+        ></p-button>
+        <p-button
+          label="Delete"
+          icon="pi pi-times"
+          styleClass="p-button-rounded p-button-danger"
+          (click)="callOnRemove(pendingTask)"
+        ></p-button>
+      </div>
+    </ng-template>
+  </p-card>
+</div>
