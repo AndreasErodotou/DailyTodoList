@@ -1,0 +1,26 @@
+<div class="row">
+  <p-card
+    *ngFor="let finishedTask of finishedTasks"
+    header="{{ finishedTask.title }}"
+    class="col-lg-4 col-md-6 my-4"
+    styleClass="bg-light"
+  >
+    <ng-template pTemplate="subtitle">
+      <h6 [ngClass]="{ 'text-danger': finishedTask.hasPriority }">
+        {{ finishedTask.hasPriority ? "Priority: Urgent" : "Priority: Normal" }}
+      </h6>
+    </ng-template>
+
+    <p>
+      {{ finishedTask.description }}
+    </p>
+    <ng-template pTemplate="footer">
+      <p-button
+        label="Clone"
+        styleClass="p-button-rounded"
+        icon="pi pi-clone"
+        (click)="callShowTaskModal(finishedTask)"
+      ></p-button>
+    </ng-template>
+  </p-card>
+</div>

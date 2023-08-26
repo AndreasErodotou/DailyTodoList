@@ -18,9 +18,11 @@ import { TaskManagmentComponent } from './task-managment/task-managment.componen
 import { TableModule } from 'primeng/table';
 import { TaskManagmentTablePendingComponent } from './task-managment/components/task-managment-table-pending/task-managment-table-pending.component';
 import { TaskManagmentCardsPendingComponent } from './task-managment/components/task-managment-cards-pending/task-managment-cards-pending.component';
+import { TaskManagmentTableFinishedComponent } from './task-managment/components/task-managment-table-finished/task-managment-table-finished.component';
+import { TaskManagmentCardsFinishedComponent } from './task-managment/components/task-managment-cards-finished/task-managment-cards-finished.component';
 
 @NgModule({
-  declarations: [AppComponent, TaskModalComponent, TaskManagmentComponent, TaskManagmentTablePendingComponent, TaskManagmentCardsPendingComponent],
+  declarations: [AppComponent, TaskModalComponent, TaskManagmentComponent, TaskManagmentTablePendingComponent, TaskManagmentCardsPendingComponent, TaskManagmentTableFinishedComponent, TaskManagmentCardsFinishedComponent],
   imports: [
     BrowserModule,
     ButtonModule,
