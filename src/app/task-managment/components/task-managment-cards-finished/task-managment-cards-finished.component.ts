@@ -14,12 +14,6 @@ export class TaskManagmentCardsFinishedComponent {
   @Input() finishedTasks: Task[] = [];
   @Output() showTaskModal = new EventEmitter();
 
-  constructor(
-    public dialogService: DialogService,
-    private messageService: MessageService,
-    private localStorageService: LocalStorageService
-  ) {}
-
   callShowTaskModal(task: Task) {
     if (this.showTaskModal) {
       this.showTaskModal.emit(task);

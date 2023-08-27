@@ -14,12 +14,6 @@ export class TaskManagmentCardsExpiredComponent {
   @Input() expiredTasks: Task[] = [];
   @Output() onRestore = new EventEmitter();
 
-  constructor(
-    public dialogService: DialogService,
-    private messageService: MessageService,
-    private localStorageService: LocalStorageService
-  ) {}
-
   callOnRestore(task: Task) {
     if (this.onRestore) {
       this.onRestore.emit(task);

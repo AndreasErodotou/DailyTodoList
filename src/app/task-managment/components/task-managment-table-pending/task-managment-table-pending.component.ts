@@ -16,13 +16,6 @@ export class TaskManagmentTablePendingComponent {
   @Output() onDone = new EventEmitter();
   @Output() onRemove = new EventEmitter();
 
-  constructor(
-    public dialogService: DialogService,
-    private messageService: MessageService,
-    private localStorageService: LocalStorageService,
-    private confirmationService: ConfirmationService
-  ) {}
-
   callShowTaskModal(task: Task) {
     if (this.showTaskModal) {
       this.showTaskModal.emit(task);
